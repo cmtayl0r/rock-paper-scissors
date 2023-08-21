@@ -46,7 +46,11 @@ const init = function () {
     // Set display choices to ?
     choicePEl.textContent = '?';
     choiceCEl.textContent = '?';
+    // Button states
     btnReset.classList.add('hidden');
+    btnRock.disabled = false;
+    btnPaper.disabled = false;
+    btnScissors.disabled = false;
 };
 
 // Execute reset function on start
@@ -87,11 +91,15 @@ const getComputerChoice = function () {
 4. PLAY ROUND
 ---------------------------------
 */
+// - "Rock' paper, Scissors" countdown - https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/
+
 const playRound = function (pChoice, cChoice) {
-    // rock > scissors, scissors > paper, paper > rock
+    // Show both selections
     choicePEl.textContent = pChoice;
     choiceCEl.textContent = cChoice;
 
+    // Logic to determine winner of round
+    // rock > scissors, scissors > paper, paper > rock
     if (
         (pChoice === choices[0] && cChoice === choices[2]) ||
         (pChoice === choices[1] && cChoice === choices[0]) ||
@@ -114,19 +122,36 @@ const playRound = function (pChoice, cChoice) {
         console.log('Its a draw 👍');
         updateEl.textContent = 'This round is a draw ⚖️';
     }
-    // Update round number
-    if (round < 4) {
-        round++;
-        roundEl.textContent = round;
-    } else if (round === 4) {
-        console.log('end of game');
-        btnReset.classList.remove('hidden');
+    // Track if a score hits 5
+    if (scores[0] === 5) {
+        console.log('PLAYER WINS');
+        winner();
+    } else if (scores[1] === 5) {
+        console.log('COMPUTER WINS');
+        winner();
+    } else {
+        console.log('CARRY ON..');
     }
+    // Update round number
+    round++;
+    roundEl.textContent = round;
 };
 
 /* 
 ---------------------------------
-4. PLAYER BUTTONS
+4. WINNER FUNCTION
+---------------------------------
+*/
+const winner = function () {
+    btnReset.classList.remove('hidden');
+    btnRock.disabled = true;
+    btnPaper.disabled = true;
+    btnScissors.disabled = true;
+};
+
+/* 
+---------------------------------
+5. PLAYER BUTTONS
 ---------------------------------
 */
 
@@ -134,31 +159,15 @@ btnRock.addEventListener('click', function () {
     playerChoice = choices[0];
     playRound(playerChoice, getComputerChoice());
 });
-
 btnPaper.addEventListener('click', function () {
     playerChoice = choices[1];
     playRound(playerChoice, getComputerChoice());
 });
-
 btnScissors.addEventListener('click', function () {
     playerChoice = choices[2];
     playRound(playerChoice, getComputerChoice());
 });
-
+// Reset game function
 btnReset.addEventListener('click', init);
 
 console.log(scores);
-
-// - Input parameters for player and computer choices
-// - "Rock' paper, Scissors" countdown - https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/
-// - Evaluate parameters
-// - display player choice
-// - display computer choice
-
-// 6. game [Function]
-// - Execute playRound function
-// - do while loop (round < 5)
-// - when round 5 over, declare winner
-
-// 7. Reset game function
-// btnReset.addEventListener('click', init);
