@@ -36,7 +36,8 @@ body {
     */
     /* line-height: var(--ratio); */
     min-height: 100vh;
-    background: linear-gradient(to right, #e1eec3, #f05053);
+    background: linear-gradient(to right, #ad5389, #3c1053);
+    color: white;
 }
 h1,
 h2,
@@ -101,7 +102,7 @@ SCORES
         padding: 2rem;
         font-size: 6rem;
         font-family: var(--font-special);
-        color: #f05053;
+        color: #3c1053;
     }
 
     & .score {
@@ -161,10 +162,12 @@ MODAL
 
     & h3 {
         font-size: 3.6rem;
+        color: black;
     }
     & p {
         font-size: 2rem;
         font-weight: 500;
+        color: #666;
     }
 }
 
