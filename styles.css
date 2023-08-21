@@ -1,3 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Merriweather:ital@0;1&display=swap');
+
+:root {
+    --font-plain: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-serif: 'Merriweather', serif;
+    --font-special: 'Barlow Condensed', sans-serif;
+}
+
+html {
+    /* 62.5% of 16px browser font size is 10px */
+    font-size: 62.5%;
+    /* Users preference */
+    /* color-scheme: light dark; */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-plain);
+    /* Set default size to 16px equivalent */
+    font-size: 1.6rem;
+    /* Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    /* 
+    Add accessible line-height for paragraph, li content etc
+    Decrease to 1.1 for h1, h2 etc
+    */
+    /* line-height: var(--ratio); */
+    min-height: 100vh;
+    background: linear-gradient(to right, #e1eec3, #f05053);
+}
+h1,
+h2,
+h3 {
+    font-family: var(--font-special);
+}
+h1 {
+    font-size: 4rem;
+}
+h2 {
+    font-size: 3rem;
+}
+h3 {
+    font-size: 2.4rem;
+}
 .hidden {
     display: none;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    color: white;
+}
+main,
+footer {
+    text-align: center;
+}
+
+header,
+.update__container,
+.score__container,
+.selections {
+    padding: 1.6rem 2rem;
+}
+/* 
+-----------------------------------------------------------
+SCORES
+-----------------------------------------------------------
+*/
+
+.score__container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.score__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+
+    padding: 2.4rem;
+    border: 5px rgba(255, 255, 255, 0.1) solid;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 1.6rem;
+
+    & .choice {
+        text-align: center;
+        padding: 2rem;
+        font-size: 6rem;
+        font-family: var(--font-special);
+        color: #f05053;
+    }
+
+    & .score {
+        font-size: 1.8rem;
+    }
+}
+
+.selections {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1.6rem;
+}
+.btn__choice {
+    font-size: 8rem;
+    border-radius: 1.6rem;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    &:focus-visible {
+        outline: 3px solid #fd0;
+        outline-offset: 0;
+    }
+    &:focus {
+        outline: 3px solid palevioletred;
+        outline-offset: 0;
+    }
+    &:active {
+        background-color: #666;
+        box-shadow: 0 1px #666;
+        transform: translateY(4px);
+    }
+}
+
+@media (min-width: 500px) {
+    header,
+    .update__container,
+    .score__container,
+    .selections {
+        padding: 2rem 2rem;
+    }
+    h2 {
+        font-size: 3.6rem;
+    }
+
+    .score__card {
+        max-width: 30rem;
+    }
+    .selections {
+        gap: 2rem;
+    }
+    .btn__choice {
+        font-size: 10rem;
+    }
+    .score__card {
+        & .choice {
+            font-size: 10rem;
+        }
+    }
 }

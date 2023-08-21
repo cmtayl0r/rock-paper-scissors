@@ -9,18 +9,34 @@
 </head>
 
 <body>
-    <h1>Rock Paper Scissors</h1>
-    <p>Round <span class="round"></span> - First to 5</p>
-    <p>🧑 has <span class="score__pla"></span></p>
-    <p>🤖 has <span class="score__com"></span></p>
-    <p class="update">Make a choice!</p>
-    <p class="choice__pla">?</p>
-    <p class="choice__com">?</p>
-    <button class="btn__choice rock">Rock</button>
-    <button class="btn__choice paper">Paper</button>
-    <button class="btn__choice scissors">Scissors</button>
-    <button class="btn__reset hidden">Try again</button>
-    <!-- <footer>Made by Chris Taylor</footer> -->
+    <header>
+        <h1>Rock Paper Scissors</h1>
+    </header>
+    <main>
+        <div class="update__container">
+            <h2 class="update">Make a choice!</h2>
+            <h3 class="result">First to 5 points wins</h3>
+        </div>
+        <div class="score__container">
+            <div class="score__card">
+                <p class="choice choice__pla">∅</p>
+                <p class="score"><span role="img" aria-label="Player">🧑</span> Score: <span class="score__pla"></span>
+                </p>
+            </div>
+            <div class="score__card">
+                <p class="choice choice__com">❔</p>
+                <p class="score"><span role="img" aria-label="Computer">🤖</span> Score: <span
+                        class="score__com"></span></p>
+            </div>
+        </div>
+        <div class="selections">
+            <button class="btn__choice rock" aria-label="Rock">🪨</button>
+            <button class="btn__choice paper" aria-label="Paper">📄</button>
+            <button class="btn__choice scissors" aria-label="Scissors">✂️</button>
+        </div>
+        <button class="btn__reset hidden">Try again</button>
+    </main>
+    <footer>Made by Chris Taylor</footer>
     <script src="scripts.js"></script>
 </body>
 

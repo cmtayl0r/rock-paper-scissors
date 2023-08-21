@@ -9,8 +9,8 @@
 // Display values
 const scorePEl = document.querySelector('.score__pla');
 const scoreCEl = document.querySelector('.score__com');
-const roundEl = document.querySelector('.round');
 const updateEl = document.querySelector('.update');
+const resultEl = document.querySelector('.result');
 const choicePEl = document.querySelector('.choice__pla');
 const choiceCEl = document.querySelector('.choice__com');
 // Buttons
@@ -26,23 +26,20 @@ const btnReset = document.querySelector('.btn__reset');
 */
 
 // empty global variables
-let scores, round, playerChoice;
+let scores, playerChoice;
 // - choices array (rock 0, paper 1, scissor 2)
-const choices = ['Rock', 'Paper', 'Scissors'];
+const choices = ['🪨', '📄', '✂️'];
 
 const init = function () {
     // function to set starting condition values, AND on new game
     // scores array (player 0, Computer 1)
     scores = [0, 0];
-    // round #
-    round = '';
 
     scorePEl.textContent = scores[0];
     scoreCEl.textContent = scores[1];
-    // Set round # to round variable
-    roundEl.textContent = round;
     // Set update to generic start statement
-    updateEl.textContent = 'Make a choice!';
+    updateEl.textContent = '🧑 You vs 🤖 The Computer';
+    resultEl.textContent = 'First to 5 points wins';
     // Set display choices to ?
     choicePEl.textContent = '?';
     choiceCEl.textContent = '?';
@@ -105,8 +102,8 @@ const playRound = function (pChoice, cChoice) {
         (pChoice === choices[1] && cChoice === choices[0]) ||
         (pChoice === choices[2] && cChoice === choices[1])
     ) {
-        console.log(`🧑 Player wins with ${pChoice} vs ${cChoice}`);
         updateEl.textContent = '🧑 Wins this round!';
+        resultEl.textContent = `${pChoice} beats ${cChoice}`;
         scores[0]++;
         scorePEl.textContent = scores[0];
     } else if (
@@ -114,27 +111,20 @@ const playRound = function (pChoice, cChoice) {
         (cChoice === choices[1] && pChoice === choices[0]) ||
         (cChoice === choices[2] && pChoice === choices[1])
     ) {
-        console.log(`🤖 Computer wins with ${cChoice} vs ${pChoice}`);
         updateEl.textContent = '🤖 Wins this round!';
+        resultEl.textContent = `${cChoice} beats ${pChoice}`;
         scores[1]++;
         scoreCEl.textContent = scores[1];
     } else {
-        console.log('Its a draw 👍');
-        updateEl.textContent = 'This round is a draw ⚖️';
+        updateEl.textContent = '✋🏽 This round is a draw';
+        resultEl.textContent = `${cChoice} matches ${pChoice}`;
     }
     // Track if a score hits 5
     if (scores[0] === 5) {
-        console.log('PLAYER WINS');
-        winner();
+        winner('Player');
     } else if (scores[1] === 5) {
-        console.log('COMPUTER WINS');
-        winner();
-    } else {
-        console.log('CARRY ON..');
+        winner('Computer');
     }
-    // Update round number
-    round++;
-    roundEl.textContent = round;
 };
 
 /* 
@@ -142,11 +132,17 @@ const playRound = function (pChoice, cChoice) {
 4. WINNER FUNCTION
 ---------------------------------
 */
-const winner = function () {
+const winner = function (win) {
     btnReset.classList.remove('hidden');
     btnRock.disabled = true;
     btnPaper.disabled = true;
     btnScissors.disabled = true;
+
+    if (win === 'Player') {
+        console.log('BOOOOOOOO PLAY');
+    } else if (win === 'Computer') {
+        console.log('BAAAAAAAA COMP');
+    }
 };
 
 /* 
