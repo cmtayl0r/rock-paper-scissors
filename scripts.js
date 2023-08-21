@@ -13,11 +13,16 @@ const updateEl = document.querySelector('.update');
 const resultEl = document.querySelector('.result');
 const choicePEl = document.querySelector('.choice__pla');
 const choiceCEl = document.querySelector('.choice__com');
-// Buttons
+const modalTitle = document.querySelector('.modal__title');
+const modalContent = document.querySelector('.modal__content');
+// Player Buttons
 const btnRock = document.querySelector('.rock');
 const btnPaper = document.querySelector('.paper');
 const btnScissors = document.querySelector('.scissors');
+// Modal
 const btnReset = document.querySelector('.btn__reset');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
 
 /* 
 ---------------------------------
@@ -44,10 +49,15 @@ const init = function () {
     choicePEl.textContent = '?';
     choiceCEl.textContent = '?';
     // Button states
-    btnReset.classList.add('hidden');
     btnRock.disabled = false;
     btnPaper.disabled = false;
     btnScissors.disabled = false;
+    // Modal hide
+    btnReset.classList.add('hidden');
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+    modalTitle.textContent = '';
+    modalContent.textContent = '';
 };
 
 // Execute reset function on start
@@ -67,21 +77,6 @@ const getComputerChoice = function () {
     // return array value
     return comChoice;
 };
-
-/* 
----------------------------------
-4. PLAYER CHOICE
----------------------------------
-*/
-
-// - add event listeners to the 3 button DOM choices
-// - getPlayerChoice [Function] to eliminate repeating code on 3 buttons
-// - connect choice selection to array value (choices)
-// - trigger game function [Function]
-// - return user choice
-
-// PLAYER CHOICE
-// const getPlayerChoice = function () {};
 
 /* 
 ---------------------------------
@@ -133,21 +128,24 @@ const playRound = function (pChoice, cChoice) {
 ---------------------------------
 */
 const winner = function (win) {
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
     btnReset.classList.remove('hidden');
     btnRock.disabled = true;
     btnPaper.disabled = true;
     btnScissors.disabled = true;
+    modalContent.textContent = `${resultEl.textContent}, to finish with a score of ${scores[0]} vs ${scores[1]}`;
 
     if (win === 'Player') {
-        console.log('BOOOOOOOO PLAY');
+        modalTitle.textContent = '🧑 You won the game!';
     } else if (win === 'Computer') {
-        console.log('BAAAAAAAA COMP');
+        modalTitle.textContent = '🤖 The Computer won the game!';
     }
 };
 
 /* 
 ---------------------------------
-5. PLAYER BUTTONS
+5. PLAYER CHOICE
 ---------------------------------
 */
 

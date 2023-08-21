@@ -72,6 +72,7 @@ header,
 .selections {
     padding: 1.6rem 2rem;
 }
+
 /* 
 -----------------------------------------------------------
 SCORES
@@ -104,7 +105,8 @@ SCORES
     }
 
     & .score {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        font-weight: 500;
     }
 }
 
@@ -125,12 +127,9 @@ SCORES
     &:hover {
         background-color: rgba(255, 255, 255, 0.5);
     }
-    &:focus-visible {
-        outline: 3px solid #fd0;
-        outline-offset: 0;
-    }
+    &:focus-visible,
     &:focus {
-        outline: 3px solid palevioletred;
+        outline: 3px solid #fd0;
         outline-offset: 0;
     }
     &:active {
@@ -139,6 +138,85 @@ SCORES
         transform: translateY(4px);
     }
 }
+
+/* 
+-----------------------------------------------------------
+MODAL 
+-----------------------------------------------------------
+*/
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+
+    background-color: white;
+    padding: 3rem;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    text-align: center;
+
+    & h3 {
+        font-size: 3.6rem;
+    }
+    & p {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+}
+
+.modal > * + * {
+    margin-top: 2.4rem;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+}
+
+.btn__reset {
+    min-height: 4.4rem;
+    min-width: 4.4rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 1rem;
+    line-height: 1.1;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid lightgray;
+    background: white;
+    border-radius: 1.2rem;
+
+    &:hover {
+        background: lightgray;
+    }
+    &:focus-visible,
+    &:focus {
+        outline: 3px solid #fd0;
+        outline-offset: 0;
+    }
+    &:active {
+        color: white;
+        background-color: #666;
+        box-shadow: 0 1px #666;
+        transform: translateY(4px);
+    }
+}
+
+/* 
+-----------------------------------------------------------
+RESPONSIVE
+-----------------------------------------------------------
+*/
 
 @media (min-width: 500px) {
     header,
@@ -164,5 +242,8 @@ SCORES
         & .choice {
             font-size: 10rem;
         }
+    }
+    .modal {
+        max-width: 40rem;
     }
 }
